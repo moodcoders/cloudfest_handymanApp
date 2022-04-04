@@ -27,9 +27,6 @@ import {
 } from '../types';
 import LinkingConfiguration from './LinkingConfiguration';
 
-import LoginSignupScreen from '../screens/Authentication/LoginSignupScreen';
-import OtpVerification from '../screens/Authentication/OtpVerification';
-
 export default function Navigation({
   colorScheme,
 }: {
@@ -53,14 +50,7 @@ const Stack = createNativeStackNavigator<RootStackParamList>();
 
 function RootNavigator() {
   return (
-    <Stack.Navigator
-      initialRouteName='LoginSignupScreen'
-      screenOptions={{
-        headerShown: false,
-      }}
-    >
-      <Stack.Screen name='LoginSignupScreen' component={LoginSignupScreen} />
-      <Stack.Screen name='OtpVerification' component={OtpVerification} />
+    <Stack.Navigator>
       <Stack.Screen
         name='Root'
         component={BottomTabNavigator}

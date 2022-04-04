@@ -1,18 +1,25 @@
-import React, { useState } from 'react';
+import React, { useState, useContext } from 'react';
 import {
   StatusBar,
   StyleSheet,
   TextInput,
   TouchableOpacity,
 } from 'react-native';
+import { UserContext } from '../../App';
 import Ionicons from 'react-native-vector-icons/Ionicons';
 import * as Animatable from 'react-native-animatable';
+import { useNavigation } from '@react-navigation/native';
 
 import { Text, View } from '../../components/Themed';
 import Colors from '../../constants/Colors';
 import { Display } from '../../constants';
 import Separator from '../../components/Separator';
 import Timer from '../../components/Timer';
+
+interface ctx {
+  myState: Boolean;
+  setMyState: React.Dispatch<React.SetStateAction<boolean>>;
+}
 // import { validateOtp } from '../../services/otp';
 
 /**
@@ -24,11 +31,14 @@ import Timer from '../../components/Timer';
  * @returns JSX.Element
  */
 const OtpVerification = ({ navigation, route }: any) => {
+  const rootNavigation = useNavigation();
   const { mobileNumber } = route.params;
+  const { myState, setMyState } = useContext<ctx | any>(UserContext);
 
   const checkValidation = () => {
+    setMyState(!myState);
     // validateOtp(mobileNumber, otp);
-    // navigation.navigate('Root');
+    // rootNavigation.navigate('Root');
   };
 
   const [otp, setOtp] = useState('');
