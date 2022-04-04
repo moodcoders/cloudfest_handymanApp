@@ -8,6 +8,7 @@ import {
   TextInput,
   TouchableOpacity,
 } from 'react-native';
+import { useNavigation } from '@react-navigation/native';
 
 import { Text, View } from './Themed';
 import Colors from '../constants/Colors';
@@ -46,12 +47,10 @@ const NumberVerification = ({ navigation }: any) => {
    * correct format and length of a number
    */
   function onPressCheck() {
-    (
-      isValidNumberFlag === true && mobileNumber.length === 10
-        ? console.log(mobileNumber)
-        : null
-    )
-      ? navigation.navigate('OtpVerification', {
+    isValidNumberFlag === true && mobileNumber.length === 10
+      ? // ? console.log(mobileNumber)
+        // : null
+        navigation.navigate('OtpVerification', {
           mobileNumber,
         })
       : Alert.alert('Enter Your Correct Phone Number');
@@ -99,11 +98,6 @@ const NumberVerification = ({ navigation }: any) => {
         <Text style={styles.borderText}>Or</Text>
         <View style={styles.border} />
       </View>
-      {/* <Text
-        style={[styles.primaryText, styles.secondaryText, styles.borderDown]}
-      >
-        Sign Up With
-      </Text> */}
       <TouchableOpacity style={[styles.borderContainer, styles.socialIcon]}>
         <FontAwesome name='google' size={40} color={Colors.GOOGLE_BLUE} />
       </TouchableOpacity>
@@ -164,7 +158,7 @@ const styles = StyleSheet.create({
     fontWeight: 'bold',
   },
   signinButton: {
-    backgroundColor: Colors.DEFAULT_GREEN,
+    backgroundColor: Colors.Button_Blue,
     borderRadius: 8,
     height: Display.setHeight(6),
     width: Display.setWidth(50),

@@ -20,17 +20,14 @@ export default function App() {
     return null;
   } else {
     return (
-      // <NavigationContainer>
-      //   {/* <Navigation colorScheme={colorScheme} /> */}
-      //   <StatusBar
-      //     barStyle='dark-content'
-      //     backgroundColor={Colors.DEFAULT_WHITE}
-      //     translucent
-      //   />
-      //   <RootStackScreen />
-      // </NavigationContainer>
-      <OtpVerification />
-      // <LoginSignupScreen />
+      <>
+        <StatusBar
+          barStyle='dark-content'
+          backgroundColor={Colors.DEFAULT_WHITE}
+          translucent
+        />
+        <Navigation colorScheme={colorScheme} />
+      </>
     );
   }
 }

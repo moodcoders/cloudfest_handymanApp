@@ -6,6 +6,7 @@ import {
   TouchableOpacity,
 } from 'react-native';
 import Ionicons from 'react-native-vector-icons/Ionicons';
+import * as Animatable from 'react-native-animatable';
 
 import { Text, View } from '../../components/Themed';
 import Colors from '../../constants/Colors';
@@ -22,8 +23,8 @@ import Timer from '../../components/Timer';
  *
  * @returns JSX.Element
  */
-const OtpVerification = () => {
-  // const { mobileNumber } = route.params;
+const OtpVerification = ({ navigation, route }: any) => {
+  const { mobileNumber } = route.params;
 
   const checkValidation = () => {
     // validateOtp(mobileNumber, otp);
@@ -44,16 +45,16 @@ const OtpVerification = () => {
           <Ionicons
             name='chevron-back-outline'
             size={30}
-            // onPress={() => navigation.goBack()}
+            onPress={() => navigation.goBack()}
           />
           <Text style={styles.headerTitle}>OTP Verification</Text>
         </View>
         <Text style={styles.text_header}>Welcome!</Text>
       </View>
-      <View style={styles.footer}>
+      <Animatable.View animation='fadeInUpBig' style={styles.footer}>
         <Text style={styles.content}>
           Enter the OTP number just sent you at{' '}
-          <Text style={styles.mobileNumberText}>mobileNumber</Text>
+          <Text style={styles.mobileNumberText}>{mobileNumber}</Text>
         </Text>
         <View style={styles.otpContainer}>
           <TextInput
@@ -72,7 +73,7 @@ const OtpVerification = () => {
         <TouchableOpacity style={styles.signinButton} onPress={checkValidation}>
           <Text style={styles.signinButtonText}>Verify</Text>
         </TouchableOpacity>
-      </View>
+      </Animatable.View>
     </View>
   );
 };
@@ -92,7 +93,7 @@ const styles = StyleSheet.create({
     backgroundColor: 'transparent',
   },
   footer: {
-    flex: 3,
+    flex: 2,
     backgroundColor: '#fff',
     borderTopLeftRadius: 30,
     borderTopRightRadius: 30,
@@ -105,8 +106,8 @@ const styles = StyleSheet.create({
     fontSize: 30,
   },
   headerContainer: {
+    marginTop: '7%',
     flexDirection: 'row',
-    // justifyContent: 'flex-start',
     paddingVertical: 20,
     backgroundColor: 'transparent',
   },
