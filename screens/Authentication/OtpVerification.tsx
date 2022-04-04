@@ -11,7 +11,7 @@ import { Text, View } from '../../components/Themed';
 import Colors from '../../constants/Colors';
 import { Display } from '../../constants';
 import Separator from '../../components/Separator';
-// import Timer from '../../components/Timer';
+import Timer from '../../components/Timer';
 // import { validateOtp } from '../../services/otp';
 
 /**
@@ -33,42 +33,46 @@ const OtpVerification = () => {
   const [otp, setOtp] = useState('');
   return (
     <View style={styles.container}>
-      <StatusBar
+      {/* <StatusBar
         barStyle='dark-content'
         backgroundColor={Colors.DEFAULT_WHITE}
         translucent
       />
-      <Separator height={StatusBar.currentHeight} />
-      <View style={styles.headerContainer}>
-        <Ionicons
-          name='chevron-back-outline'
-          size={30}
-          // onPress={() => navigation.goBack()}
-        />
-        <Text style={styles.headerTitle}>OTP Verification</Text>
+      <Separator height={StatusBar.currentHeight} /> */}
+      <View style={styles.header}>
+        <View style={styles.headerContainer}>
+          <Ionicons
+            name='chevron-back-outline'
+            size={30}
+            // onPress={() => navigation.goBack()}
+          />
+          <Text style={styles.headerTitle}>OTP Verification</Text>
+        </View>
+        <Text style={styles.text_header}>Welcome!</Text>
       </View>
-
-      <Text style={styles.content}>
-        Enter the OTP number just sent you at{' '}
-        <Text style={styles.mobileNumberText}>mobileNumber</Text>
-      </Text>
-      <View style={styles.otpContainer}>
-        <TextInput
-          style={[styles.otpBox, styles.otpText]}
-          keyboardType='number-pad'
-          maxLength={6}
-          onChangeText={(text) => {
-            setOtp(text);
-          }}
-          defaultValue={otp}
-        />
+      <View style={styles.footer}>
+        <Text style={styles.content}>
+          Enter the OTP number just sent you at{' '}
+          <Text style={styles.mobileNumberText}>mobileNumber</Text>
+        </Text>
+        <View style={styles.otpContainer}>
+          <TextInput
+            style={[styles.otpBox, styles.otpText]}
+            keyboardType='number-pad'
+            maxLength={6}
+            onChangeText={(text) => {
+              setOtp(text);
+            }}
+            defaultValue={otp}
+          />
+        </View>
+        <View style={styles.resendController}>
+          <Timer />
+        </View>
+        <TouchableOpacity style={styles.signinButton} onPress={checkValidation}>
+          <Text style={styles.signinButtonText}>Verify</Text>
+        </TouchableOpacity>
       </View>
-      <View style={styles.resendController}>
-        {/* <Timer mobileNumber={mobileNumber} /> */}
-      </View>
-      <TouchableOpacity style={styles.signinButton} onPress={checkValidation}>
-        <Text style={styles.signinButtonText}>Verify</Text>
-      </TouchableOpacity>
     </View>
   );
 };
@@ -78,16 +82,36 @@ export default OtpVerification;
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: Colors.DEFAULT_WHITE,
+    backgroundColor: Colors.LIGHT_GREY2,
+  },
+  header: {
+    flex: 1,
+    justifyContent: 'space-between',
+    paddingHorizontal: 20,
+    paddingBottom: 20,
+    backgroundColor: 'transparent',
+  },
+  footer: {
+    flex: 3,
+    backgroundColor: '#fff',
+    borderTopLeftRadius: 30,
+    borderTopRightRadius: 30,
+    paddingHorizontal: 20,
+    paddingVertical: 30,
+  },
+  text_header: {
+    color: '#fff',
+    fontWeight: 'bold',
+    fontSize: 30,
   },
   headerContainer: {
     flexDirection: 'row',
-    marginTop: 20,
-    paddingVertical: 10,
-    paddingHorizontal: 20,
+    // justifyContent: 'flex-start',
+    paddingVertical: 20,
+    backgroundColor: 'transparent',
   },
   headerTitle: {
-    fontSize: 20,
+    fontSize: 25,
     lineHeight: 20 * 1.4,
     width: Display.setWidth(80),
     textAlign: 'center',
@@ -95,7 +119,7 @@ const styles = StyleSheet.create({
   content: {
     fontSize: 20,
     alignItems: 'center',
-    marginTop: '40%',
+    marginTop: '20%',
     marginBottom: 30,
     marginHorizontal: 20,
   },

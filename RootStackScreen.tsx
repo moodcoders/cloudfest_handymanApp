@@ -1,10 +1,10 @@
 import React from 'react';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 
-import SplashScreen from './screens/Authentication/SplashScreen';
+import LoginSignupScreen from './screens/Authentication/LoginSignupScreen';
 import NumberVerification from './components/NumberVerification';
 // import LoginSignupScreen from './screens/Authentication/LoginSignupScreen';
-// import OtpVerification from './screens/Authentication/OtpVerification';
+import OtpVerification from './screens/Authentication/OtpVerification';
 
 const Stack = createNativeStackNavigator();
 const RootStackScreen = () => (
@@ -13,9 +13,9 @@ const RootStackScreen = () => (
       headerShown: false,
     }}
   >
-    <Stack.Screen name='SplashScreen' component={SplashScreen} />
-    <Stack.Screen name='NumberVerification' component={NumberVerification} />
-    {/*<Stack.Screen name='OtpVerification' component={OtpVerification} /> */}
+    <Stack.Screen name='LoginSignupScreen' component={LoginSignupScreen} />
+    <Stack.Screen name='OtpVerification' component={OtpVerification} />
+    {/* <Stack.Screen name='NumberVerification' component={NumberVerification} /> */}
   </Stack.Navigator>
 );
 

@@ -48,7 +48,7 @@ const NumberVerification = ({ navigation }: any) => {
   function onPressCheck() {
     (
       isValidNumberFlag === true && mobileNumber.length === 10
-        ? generateOtpAPI(mobileNumber)
+        ? console.log(mobileNumber)
         : null
     )
       ? navigation.navigate('OtpVerification', {
@@ -59,35 +59,33 @@ const NumberVerification = ({ navigation }: any) => {
 
   return (
     <View style={styles.container}>
-      <View>
-        <Text style={styles.primaryText}>Login Or SignUp</Text>
-        <View style={styles.inputsContainer}>
-          <View style={{ flexDirection: 'row' }}>
-            <TouchableOpacity style={styles.countryListContainer}>
-              <Image style={styles.image} source={IndianFlag} />
-              <Text style={styles.countryCodeText}>{'+91'}</Text>
-            </TouchableOpacity>
-            <View style={styles.phoneInputContainer}>
-              <TextInput
-                maxLength={10}
-                placeholder='Phone Number'
-                placeholderTextColor={Colors.DEFAULT_GREY}
-                selectionColor={Colors.DEFAULT_GREY}
-                keyboardType='number-pad'
-                style={styles.inputText}
-                onChangeText={onChangeHandler}
-                value={mobileNumber}
-              />
-            </View>
+      <Text style={styles.primaryText}>Login Or SignUp</Text>
+      <View style={styles.inputsContainer}>
+        <View style={{ flexDirection: 'row' }}>
+          <TouchableOpacity style={styles.countryListContainer}>
+            <Image style={styles.image} source={IndianFlag} />
+            <Text style={styles.countryCodeText}>{'+91'}</Text>
+          </TouchableOpacity>
+          <View style={styles.phoneInputContainer}>
+            <TextInput
+              maxLength={10}
+              placeholder='Phone Number'
+              placeholderTextColor={Colors.DEFAULT_GREY}
+              selectionColor={Colors.DEFAULT_GREY}
+              keyboardType='number-pad'
+              style={styles.inputText}
+              onChangeText={onChangeHandler}
+              value={mobileNumber}
+            />
           </View>
-          <Text style={styles.verificationText}>
-            {mobileNumber.length !== 0
-              ? isValidNumberFlag
-                ? ''
-                : 'Invalid'
-              : null}
-          </Text>
         </View>
+        <Text style={styles.verificationText}>
+          {mobileNumber.length !== 0
+            ? isValidNumberFlag
+              ? ''
+              : 'Invalid'
+            : null}
+        </Text>
       </View>
       <TouchableOpacity
         style={[styles.signinButton, { alignSelf: 'center' }]}
@@ -119,9 +117,10 @@ const styles = StyleSheet.create({
   container: {
     backgroundColor: Colors.DEFAULT_WHITE,
     display: 'flex',
-    justifyContent: 'space-evenly',
+    // justifyContent: 'space-evenly',
   },
   inputsContainer: {
+    backgroundColor: Colors.DEFAULT_WHITE,
     alignItems: 'center',
     flexDirection: 'column',
     marginVertical: '5%',
@@ -193,16 +192,17 @@ const styles = StyleSheet.create({
     marginTop: '3%',
   },
   borderContainer: {
-    marginTop: '9%',
+    marginTop: '5%',
     flexDirection: 'row',
     justifyContent: 'space-evenly',
   },
   border: {
+    backgroundColor: Colors.DEFAULT_WHITE,
     width: '46%',
     borderBottomWidth: 1,
   },
   borderText: {
-    color: 'black',
+    backgroundColor: Colors.DEFAULT_WHITE,
     fontSize: 18,
     fontWeight: 'bold',
   },
@@ -212,7 +212,6 @@ const styles = StyleSheet.create({
     fontWeight: 'bold',
   },
   socialIcon: {
-    // letterSpacing: 200,
     justifyContent: 'space-around',
   },
 });
