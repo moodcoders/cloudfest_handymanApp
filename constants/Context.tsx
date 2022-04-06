@@ -1,9 +1,9 @@
 //This Component is created to avoid require cycle error
-import React, { createContext } from 'react';
+import { createContext } from 'react';
 
 interface ctx {
-  myState: Boolean;
-  setMyState: React.Dispatch<React.SetStateAction<boolean>>;
+  signIn: void | any;
+  signOut: void | any;
 }
 
 export const AuthContext = createContext<ctx | null>(null);

@@ -1,14 +1,5 @@
-import { ToastAndroid, Platform, Alert } from 'react-native';
-
-function notifyMessage(msg: string | any) {
-  if (Platform.OS === 'android') {
-    ToastAndroid.show(msg, ToastAndroid.SHORT);
-  } else {
-    Alert.alert(msg);
-  }
-}
 const AUTH_API = 'http://192.168.1.11:4000';
-
+import { notifyMessage } from '../constants/NotifyMessage';
 /**generateOtpAPI is generating OTP for the handyman */
 export const generateOtpAPI = async (mobileNumber: string) => {
   try {
@@ -43,9 +34,15 @@ export const validateOtp = async (mobileNumber: string, otp: string) => {
         password: otp,
       }),
     });
+
     const jsonResponse = await response.json();
-    console.log(jsonResponse);
+
+    if (!response.ok) {
+      throw new Error(jsonResponse.message);
+    }
+    return jsonResponse;
   } catch (err) {
-    alert(err);
+    notifyMessage(`wrong OTP`);
+    throw err;
   }
 };

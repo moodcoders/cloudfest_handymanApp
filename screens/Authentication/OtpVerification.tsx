@@ -10,25 +10,29 @@ import Timer from '../../components/Timer';
 import { AuthContext } from '../../constants/Context';
 import { validateOtp } from '../../services/otp';
 interface ctx {
-  myState: Boolean;
-  setMyState: React.Dispatch<React.SetStateAction<boolean>>;
+  signIn: void | any;
+  signOut: void | any;
 }
 
 /**
  * OtpVerification Component is verifying the Otp send to the User
  *
  * @param navigation - object that contains react-navigation methods
- * @param mobileNumber as route.params
  *
  * @returns JSX.Element
  */
 const OtpVerification = ({ navigation, route }: any) => {
   const { mobileNumber } = route.params;
-  const { myState, setMyState } = useContext<ctx | any>(AuthContext);
+  const { signIn } = useContext<ctx | any>(AuthContext);
 
-  const checkValidation = () => {
-    validateOtp(mobileNumber, otp);
-    setMyState(!myState);
+  const checkValidation = async () => {
+    try {
+      const handymanToken = await validateOtp(mobileNumber, otp);
+      signIn(handymanToken.user.token);
+      console.log(handymanToken.user.token);
+    } catch (error) {
+      console.log(error);
+    }
   };
 
   const [otp, setOtp] = useState('');

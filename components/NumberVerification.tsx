@@ -1,18 +1,13 @@
 import React, { useState } from 'react';
-import {
-  Alert,
-  Image,
-  StyleSheet,
-  TextInput,
-  TouchableOpacity,
-} from 'react-native';
+import { Image, StyleSheet, TextInput, TouchableOpacity } from 'react-native';
 
 import { Text, View } from './Themed';
 import Colors from '../constants/Colors';
 import { Display } from '../constants';
-import { FontAwesome } from '@expo/vector-icons';
 import IndianFlag from '../assets/images/india.png';
+import Google from '../assets/images/google.png';
 import { generateOtpAPI } from '../services/otp';
+import { notifyMessage } from '../constants/NotifyMessage';
 
 /**
  * NumberVerification Component is allowing the user to input the number for SignUp/Login
@@ -52,7 +47,7 @@ const NumberVerification = ({ navigation }: any) => {
       ? navigation.navigate('OtpVerification', {
           mobileNumber,
         })
-      : Alert.alert('Enter Your Correct Phone Number');
+      : notifyMessage('Enter Your Correct Phone Number');
   }
 
   return (
@@ -98,7 +93,7 @@ const NumberVerification = ({ navigation }: any) => {
         <View style={styles.border} />
       </View>
       <TouchableOpacity style={[styles.borderContainer, styles.socialIcon]}>
-        <FontAwesome name='google' size={40} color={Colors.GOOGLE_BLUE} />
+        <Image style={styles.google} source={Google} />
       </TouchableOpacity>
     </View>
   );
@@ -185,7 +180,7 @@ const styles = StyleSheet.create({
     marginTop: '3%',
   },
   borderContainer: {
-    marginTop: '5%',
+    marginTop: '3%',
     flexDirection: 'row',
     justifyContent: 'space-evenly',
   },
@@ -200,11 +195,14 @@ const styles = StyleSheet.create({
     fontWeight: 'bold',
   },
   borderDown: {
-    marginTop: '3.5%',
     fontSize: 15,
     fontWeight: 'bold',
   },
   socialIcon: {
     justifyContent: 'space-around',
+  },
+  google: {
+    height: Display.setHeight(6),
+    width: Display.setWidth(15),
   },
 });
