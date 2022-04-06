@@ -1,27 +1,29 @@
 import React, { useEffect, useState } from 'react';
-import { StyleSheet, KeyboardAvoidingView, Keyboard } from 'react-native';
-import { View, Text } from '../../components/Themed';
+import { KeyboardAvoidingView, Keyboard, StyleSheet } from 'react-native';
+import * as Animatable from 'react-native-animatable';
 
+import NumberVerification from '../../components/NumberVerification';
+import Colors from '../../constants/Colors';
+import { Display } from '../../constants';
+import { Text, View } from '../../components/Themed';
 import Smartservice from '../../assets/images/smartservice.png';
 import Handyman from '../../assets/images/handyman.png';
 
-import { Display } from '../../constants';
-import Colors from '../../constants/Colors';
-
-import * as Animatable from 'react-native-animatable';
-import { useTheme } from '@react-navigation/native';
-import NumberVerification from '../../components/NumberVerification';
-
+/**
+ *LoginSignupScreen is the authentication page of the App
+ *
+ * @param navigation - object that contains react-navigation methods
+ *
+ * @returns JSX Elements
+ */
 const LoginSignupScreen = ({ navigation }: any) => {
-  const { colors } = useTheme();
-
   const [didKeyboardShow, setKeyboardShow] = useState<any>(true);
 
   useEffect(() => {
     Keyboard.addListener('keyboardDidShow', _keyboardDidShow);
     Keyboard.addListener('keyboardDidHide', _keyboardDidHide);
 
-    //  Don't forget to cleanup with remove listeners
+    //  cleaningup the keyboard event with remove listeners
     return () => {
       Keyboard.removeListener('keyboardDidShow', _keyboardDidShow);
       Keyboard.removeListener('keyboardDidHide', _keyboardDidHide);

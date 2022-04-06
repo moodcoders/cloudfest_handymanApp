@@ -1,26 +1,18 @@
 import React, { useState, useContext } from 'react';
-import {
-  StatusBar,
-  StyleSheet,
-  TextInput,
-  TouchableOpacity,
-} from 'react-native';
-import { UserContext } from '../../App';
+import { StyleSheet, TextInput, TouchableOpacity } from 'react-native';
 import Ionicons from 'react-native-vector-icons/Ionicons';
 import * as Animatable from 'react-native-animatable';
-import { useNavigation } from '@react-navigation/native';
 
 import { Text, View } from '../../components/Themed';
 import Colors from '../../constants/Colors';
 import { Display } from '../../constants';
-import Separator from '../../components/Separator';
 import Timer from '../../components/Timer';
-
+import { AuthContext } from '../../constants/Context';
+// import { validateOtp } from '../../services/otp';
 interface ctx {
   myState: Boolean;
   setMyState: React.Dispatch<React.SetStateAction<boolean>>;
 }
-// import { validateOtp } from '../../services/otp';
 
 /**
  * OtpVerification Component is verifying the Otp send to the User
@@ -31,25 +23,17 @@ interface ctx {
  * @returns JSX.Element
  */
 const OtpVerification = ({ navigation, route }: any) => {
-  const rootNavigation = useNavigation();
   const { mobileNumber } = route.params;
-  const { myState, setMyState } = useContext<ctx | any>(UserContext);
+  const { myState, setMyState } = useContext<ctx | any>(AuthContext);
 
   const checkValidation = () => {
     setMyState(!myState);
     // validateOtp(mobileNumber, otp);
-    // rootNavigation.navigate('Root');
   };
 
   const [otp, setOtp] = useState('');
   return (
     <View style={styles.container}>
-      {/* <StatusBar
-        barStyle='dark-content'
-        backgroundColor={Colors.DEFAULT_WHITE}
-        translucent
-      />
-      <Separator height={StatusBar.currentHeight} /> */}
       <View style={styles.header}>
         <View style={styles.headerContainer}>
           <Ionicons
@@ -116,7 +100,7 @@ const styles = StyleSheet.create({
     fontSize: 30,
   },
   headerContainer: {
-    marginTop: '7%',
+    marginTop: '8%',
     flexDirection: 'row',
     paddingVertical: 20,
     backgroundColor: 'transparent',

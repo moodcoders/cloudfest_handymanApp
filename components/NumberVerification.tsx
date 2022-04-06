@@ -2,20 +2,17 @@ import React, { useState } from 'react';
 import {
   Alert,
   Image,
-  KeyboardAvoidingView,
-  StatusBar,
   StyleSheet,
   TextInput,
   TouchableOpacity,
 } from 'react-native';
-import { useNavigation } from '@react-navigation/native';
 
 import { Text, View } from './Themed';
 import Colors from '../constants/Colors';
 import { Display } from '../constants';
-// import { generateOtpAPI } from '../services/otp';
-import IndianFlag from '../assets/images/india.png';
 import { FontAwesome } from '@expo/vector-icons';
+import IndianFlag from '../assets/images/india.png';
+// import { generateOtpAPI } from '../services/otp';
 
 /**
  * NumberVerification Component is allowing the user to input the number for SignUp/Login

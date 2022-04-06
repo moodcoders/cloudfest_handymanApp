@@ -1,33 +1,23 @@
+import { useState } from 'react';
 import { StatusBar } from 'react-native';
-import { SafeAreaProvider } from 'react-native-safe-area-context';
 
+import { AuthContext } from './constants/Context';
+import Colors from './constants/Colors';
+import Navigation from './navigation';
+import RootStackScreen from './navigation/RootStackScreen';
 import useCachedResources from './hooks/useCachedResources';
 import useColorScheme from './hooks/useColorScheme';
-import Navigation from './navigation';
-import SplashScreen from './screens/Authentication/LoginSignupScreen';
-import RootStackScreen from './navigation/RootStackScreen';
-import { NavigationContainer } from '@react-navigation/native';
-import Colors from './constants/Colors';
-import NumberVerification from './components/NumberVerification';
-import OtpVerification from './screens/Authentication/OtpVerification';
-import LoginSignupScreen from './screens/Authentication/LoginSignupScreen';
-import { useState, createContext } from 'react';
 
-interface ctx {
-  myState: Boolean;
-  setMyState: React.Dispatch<React.SetStateAction<boolean>>;
-}
-
-export const UserContext = createContext<ctx | null>(null);
-
+/**
+ * App Component is the Parent Component where all component interact with each other
+ *
+ * @returns Statusbar, Auth Page Route and Root Route
+ *
+ */
 export default function App() {
   const isLoadingComplete = useCachedResources();
   const colorScheme = useColorScheme();
   const [myState, setMyState] = useState<boolean>(true);
-
-  const setButton = () => {
-    setMyState(true);
-  };
 
   if (!isLoadingComplete) {
     return null;
@@ -40,9 +30,9 @@ export default function App() {
           translucent
         />
         {myState ? (
-          <UserContext.Provider value={{ myState, setMyState }}>
+          <AuthContext.Provider value={{ myState, setMyState }}>
             <RootStackScreen />
-          </UserContext.Provider>
+          </AuthContext.Provider>
         ) : (
           <Navigation colorScheme={colorScheme} />
         )}

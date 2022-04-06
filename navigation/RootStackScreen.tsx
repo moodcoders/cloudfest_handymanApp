@@ -1,17 +1,15 @@
 import React from 'react';
-import {
-  NavigationContainer,
-  DefaultTheme,
-  DarkTheme,
-} from '@react-navigation/native';
+import { NavigationContainer } from '@react-navigation/native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 
 import LoginSignupScreen from '../screens/Authentication/LoginSignupScreen';
-import NumberVerification from '../components/NumberVerification';
-// import LoginSignupScreen from './screens/Authentication/LoginSignupScreen';
 import OtpVerification from '../screens/Authentication/OtpVerification';
 
 const Stack = createNativeStackNavigator();
+
+/**
+ * RootStackScreen is Handling Navigation for Auth Screen
+ */
 const RootStackScreen = () => (
   <NavigationContainer>
     <Stack.Navigator
