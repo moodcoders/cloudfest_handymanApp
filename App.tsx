@@ -1,5 +1,6 @@
 import { useState } from 'react';
-import { StatusBar } from 'react-native';
+import { View } from './components/Themed';
+import { StatusBar, ActivityIndicator } from 'react-native';
 
 import { AuthContext } from './constants/Context';
 import Colors from './constants/Colors';
@@ -20,14 +21,18 @@ export default function App() {
   const [myState, setMyState] = useState<boolean>(true);
 
   if (!isLoadingComplete) {
-    return null;
+    return (
+      <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>
+        <ActivityIndicator size='large' />
+      </View>
+    );
   } else {
     return (
       <>
         <StatusBar
           barStyle='dark-content'
-          backgroundColor={Colors.DEFAULT_WHITE}
-          translucent
+          translucent={false}
+          backgroundColor='transparent'
         />
         {myState ? (
           <AuthContext.Provider value={{ myState, setMyState }}>

@@ -1,10 +1,22 @@
 import { FontAwesome } from '@expo/vector-icons';
 import * as Font from 'expo-font';
 import * as SplashScreen from 'expo-splash-screen';
-import { useEffect, useState } from 'react';
+import { useEffect, useState, useMemo } from 'react';
 
 export default function useCachedResources() {
   const [isLoadingComplete, setLoadingComplete] = useState(false);
+  const [userToken, setUserToken] = useState<null | string>(null)
+
+  const authContext = useMemo(() => ({
+    signIn: () => {
+      setUserToken('hd555hydd');
+      setLoadingComplete(false)
+    },
+    signOut: () => {
+      setUserToken(null);
+      setLoadingComplete(false)
+    },
+  }), []);
 
   // Load any resources or data that we need prior to rendering the app
   useEffect(() => {

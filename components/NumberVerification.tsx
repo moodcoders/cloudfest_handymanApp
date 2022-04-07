@@ -12,7 +12,7 @@ import Colors from '../constants/Colors';
 import { Display } from '../constants';
 import { FontAwesome } from '@expo/vector-icons';
 import IndianFlag from '../assets/images/india.png';
-// import { generateOtpAPI } from '../services/otp';
+import { generateOtpAPI } from '../services/otp';
 
 /**
  * NumberVerification Component is allowing the user to input the number for SignUp/Login
@@ -44,10 +44,12 @@ const NumberVerification = ({ navigation }: any) => {
    * correct format and length of a number
    */
   function onPressCheck() {
-    isValidNumberFlag === true && mobileNumber.length === 10
-      ? // ? console.log(mobileNumber)
-        // : null
-        navigation.navigate('OtpVerification', {
+    (
+      isValidNumberFlag === true && mobileNumber.length === 10
+        ? generateOtpAPI(mobileNumber)
+        : null
+    )
+      ? navigation.navigate('OtpVerification', {
           mobileNumber,
         })
       : Alert.alert('Enter Your Correct Phone Number');

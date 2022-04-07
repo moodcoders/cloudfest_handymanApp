@@ -4,11 +4,11 @@ import { StyleSheet } from 'react-native';
 import { View, Text } from '../components/Themed';
 import Colors from '../constants/Colors';
 import { Display } from '../constants';
-// import { generateOtpAPI } from '../services/otp';
+import { generateOtpAPI } from '../services/otp';
 
-// interface timerProp {
-//   mobileNumber: string;
-// }
+interface timerProp {
+  mobileNumber: string;
+}
 /**
  * Timer Component is used for displaying the timer
  *
@@ -16,7 +16,7 @@ import { Display } from '../constants';
  *
  * @returns JSX Elements
  */
-const Timer = () => {
+const Timer = ({ mobileNumber }: timerProp) => {
   const [seconds, setSeconds] = useState(360);
 
   useEffect(() => {
@@ -32,7 +32,7 @@ const Timer = () => {
 
   const resendOtp = () => {
     setSeconds(300);
-    // generateOtpAPI(mobileNumber);
+    generateOtpAPI(mobileNumber);
     console.log('Resending');
   };
 

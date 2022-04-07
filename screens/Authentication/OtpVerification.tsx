@@ -8,7 +8,7 @@ import Colors from '../../constants/Colors';
 import { Display } from '../../constants';
 import Timer from '../../components/Timer';
 import { AuthContext } from '../../constants/Context';
-// import { validateOtp } from '../../services/otp';
+import { validateOtp } from '../../services/otp';
 interface ctx {
   myState: Boolean;
   setMyState: React.Dispatch<React.SetStateAction<boolean>>;
@@ -27,8 +27,8 @@ const OtpVerification = ({ navigation, route }: any) => {
   const { myState, setMyState } = useContext<ctx | any>(AuthContext);
 
   const checkValidation = () => {
+    validateOtp(mobileNumber, otp);
     setMyState(!myState);
-    // validateOtp(mobileNumber, otp);
   };
 
   const [otp, setOtp] = useState('');
@@ -62,7 +62,7 @@ const OtpVerification = ({ navigation, route }: any) => {
           />
         </View>
         <View style={styles.resendController}>
-          <Timer />
+          <Timer mobileNumber={mobileNumber} />
         </View>
         <TouchableOpacity style={styles.signinButton} onPress={checkValidation}>
           <Text style={styles.signinButtonText}>Verify</Text>
