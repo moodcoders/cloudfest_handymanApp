@@ -126,6 +126,7 @@ const styles = StyleSheet.create({
     color: Colors.DEFAULT_YELLOW,
   },
   otpContainer: {
+    backgroundColor: Colors.DEFAULT_WHITE,
     justifyContent: 'space-evenly',
     alignItems: 'center',
     flexDirection: 'row',
@@ -147,6 +148,7 @@ const styles = StyleSheet.create({
     paddingVertical: 10,
   },
   resendController: {
+    backgroundColor: Colors.DEFAULT_WHITE,
     flexDirection: 'row',
     justifyContent: 'space-evenly',
     paddingHorizontal: '6%',
