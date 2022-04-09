@@ -11,7 +11,6 @@ import { AuthContext } from '../../constants/Context';
 import { validateOtp } from '../../services/otp';
 interface ctx {
   signIn: void | any;
-  signOut: void | any;
 }
 
 /**
@@ -29,7 +28,6 @@ const OtpVerification = ({ navigation, route }: any) => {
     try {
       const handymanToken = await validateOtp(mobileNumber, otp);
       signIn(handymanToken.user.token);
-      console.log(handymanToken.user.token);
     } catch (error) {
       console.log(error);
     }
