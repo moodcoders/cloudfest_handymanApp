@@ -17,11 +17,11 @@ interface bookingParams {
 };
 
 const HandymanDetails = (prop: bookingParams) => {
-    const [checked, onChange] = useState(false);
+    const [serviceCompleted, onServiceCompleted] = useState(false);
     const [payment, onPayment] = useState(false);
 
-    function onCheckmarkPress() {
-        onChange(!checked);
+    function onServiceCompletedPress() {
+        onServiceCompleted(!serviceCompleted);
     }
     function PaymentServiceMark() {
         onPayment(!payment);
@@ -93,12 +93,11 @@ const HandymanDetails = (prop: bookingParams) => {
                         Service Completed
                     </Text>
                     <Pressable
-                        style={[styles.checkboxBase, checked && styles.checkboxChecked]}
-                        onPress={onCheckmarkPress}>
-                        {checked && <Ionicons name="checkmark" color="white" size={24} adjustsFontSizeToFit />}
+                        style={[styles.checkboxBase, serviceCompleted && styles.checkboxChecked]}
+                        onPress={onServiceCompletedPress}>
+                        {serviceCompleted && <Ionicons name="checkmark" color="white" size={24} adjustsFontSizeToFit />}
                     </Pressable>
                 </View>
-
                 <View style={{ flexDirection: 'row', justifyContent: 'space-between', paddingTop: 25, }}>
                     <Text style={[styles.bookingNumber, { fontSize: 20 }]}>
                         Payment Received
@@ -109,8 +108,6 @@ const HandymanDetails = (prop: bookingParams) => {
                         {payment && <Ionicons name="checkmark" color="white" size={24} adjustsFontSizeToFit />}
                     </Pressable>
                 </View>
-
-
             </View>
         </>
     );
