@@ -3,79 +3,72 @@ import { StyleSheet, Image, TouchableOpacity, ScrollView } from 'react-native';
 import { View, Text } from '../../components/Themed';
 
 import Icon from 'react-native-vector-icons/EvilIcons';
-
 import DataServices from '../../DataStore/DataService';
 
-
-
-const ActiveBooking = ({ navigation }: any) => {
+const ActiveBooking = () => {
     return (
-        <View >
-            <View style={styles.backgroundColor} lightColor="#edf1fb" darkColor="rgba(0, 0, 0, 0.22)">
-                <ScrollView>
-                    <View style={{ backgroundColor: 'transparent', }} >
-                        {DataServices.map((handyman, index) => {
-                            return (
-                                <View key={index} style={[styles.card, styles.shadow]} >
-                                    <View>
-                                        <View style={{ flexDirection: 'row', alignSelf: 'center' }}>
-                                            <View>
-                                                <Text style={styles.bookingId}>Booking Number is </Text>
-                                            </View>
-                                            <View>
-                                                <Text style={{ fontSize: 12 }}>bg6789p0</Text>
-                                            </View>
+        <View style={styles.backgroundColor} lightColor="#edf1fb" darkColor="rgba(0, 0, 0, 0.22)">
+            <ScrollView>
+                <View style={{ backgroundColor: 'transparent', }} >
+                    {DataServices.map((handyman, index) => {
+                        return (
+                            <View key={index} style={[styles.card, styles.shadow]} >
+                                <View>
+                                    <View style={{ flexDirection: 'row', alignSelf: 'center' }}>
+                                        <View>
+                                            <Text style={styles.bookingId}>Booking Number is </Text>
                                         </View>
-                                        <View style={{ flexDirection: 'row', alignItems: 'center', marginBottom: 5 }}>
-                                            <View>
-                                                <Image
-                                                    style={styles.image}
-                                                    resizeMode="cover"
-                                                    source={handyman.img}
-                                                />
+                                        <View>
+                                            <Text style={{ fontSize: 12 }}>bg6789p0</Text>
+                                        </View>
+                                    </View>
+                                    <View style={{ flexDirection: 'row', alignItems: 'center', marginBottom: 5 }}>
+                                        <View>
+                                            <Image
+                                                style={styles.image}
+                                                resizeMode="cover"
+                                                source={handyman.img}
+                                            />
+                                        </View>
+                                        <View>
+                                            <Text style={styles.clientName}>
+                                                {handyman.name}
+                                            </Text>
+                                        </View>
+                                    </View>
+                                    <View style={{ marginLeft: 35 }}>
+                                        <View style={{ flexDirection: 'row', justifyContent: 'space-between' }}>
+                                            <View style={{ alignItems: 'center' }}>
+                                                <Text>4 pm </Text>
+                                                <Text>Monday,  Sep 7 </Text>
                                             </View>
-                                            <View>
-                                                <Text style={styles.clientName}>
-                                                    {handyman.name}
+                                            <View style={styles.verticleLine}></View>
+                                            <View style={{ width: '50%', }}>
+                                                <Text ellipsizeMode='tail' numberOfLines={2} style={styles.address}>
+                                                    DC-220, Newtown, Kolkata - 700156
                                                 </Text>
                                             </View>
                                         </View>
-                                        <View style={{ marginLeft: 35 }}>
-                                            <View style={{ flexDirection: 'row', justifyContent: 'space-between' }}>
-                                                <View style={{ alignItems: 'center' }}>
-                                                    <Text>4 pm </Text>
-                                                    <Text>Monday,  Sep 7 </Text>
-                                                </View>
-                                                <View style={styles.verticleLine}></View>
-                                                <View style={{ width: '50%', }}>
-                                                    <Text ellipsizeMode='tail' numberOfLines={2} style={styles.address}>
-                                                        DC-220, Newtown, Kolkata - 700156
-                                                    </Text>
-                                                </View>
-                                            </View>
-                                        </View>
-
-                                        <TouchableOpacity
-                                            style={[styles.serviceBtn, { flexDirection: 'row', justifyContent: 'space-between', marginTop: 10, alignItems: 'center' }]}
-                                        >
-                                            <Text style={styles.btnName}>4 Days left for Service </Text>
-
-                                            <Icon
-                                                name='chevron-right'
-                                                onPress={() => console.log('back button press')}
-                                                color='#fff'
-                                                size={40}
-                                            />
-                                        </TouchableOpacity>
-
                                     </View>
+                                    <TouchableOpacity
+                                        style={[styles.serviceBtn, { flexDirection: 'row', justifyContent: 'space-between', marginTop: 10, alignItems: 'center' }]}
+                                    >
+                                        <Text style={styles.btnName}>4 Days left for Service </Text>
+
+                                        <Icon
+                                            name='chevron-right'
+                                            onPress={() => console.log('back button press')}
+                                            color='#fff'
+                                            size={40}
+                                        />
+                                    </TouchableOpacity>
                                 </View>
-                            );
-                        })}
-                    </View>
-                </ScrollView>
-            </View>
-        </View >
+                            </View>
+                        );
+                    })}
+                </View>
+            </ScrollView>
+        </View>
     );
 };
 
