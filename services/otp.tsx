@@ -1,5 +1,6 @@
 const AUTH_API = 'http://192.168.1.11:4000';
 import { notifyMessage } from '../constants/NotifyMessage';
+
 /**generateOtpAPI is generating OTP for the handyman */
 export const generateOtpAPI = async (mobileNumber: string) => {
   try {
@@ -16,7 +17,9 @@ export const generateOtpAPI = async (mobileNumber: string) => {
     const jsonResponse = await response.json();
     notifyMessage(JSON.stringify(jsonResponse.message));
   } catch (err) {
-    notifyMessage(err);
+    if (err instanceof Error) {
+      notifyMessage(err.message);
+    }
   }
 };
 
@@ -34,7 +37,6 @@ export const validateOtp = async (mobileNumber: string, otp: string) => {
         password: otp,
       }),
     });
-
     const jsonResponse = await response.json();
 
     if (!response.ok) {
@@ -42,7 +44,7 @@ export const validateOtp = async (mobileNumber: string, otp: string) => {
     }
     return jsonResponse;
   } catch (err) {
-    notifyMessage(`wrong OTP`);
+    notifyMessage('Wrong OTP');
     throw err;
   }
 };

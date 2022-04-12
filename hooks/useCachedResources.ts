@@ -1,7 +1,7 @@
+import { useEffect, useMemo, useReducer } from 'react';
 import { FontAwesome } from '@expo/vector-icons';
 import * as Font from 'expo-font';
 import * as SplashScreen from 'expo-splash-screen';
-import { useEffect, useMemo, useReducer } from 'react';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 
 interface authType {
@@ -9,10 +9,10 @@ interface authType {
   handymanToken: null | string
 }
 
+/**
+ * useCachedResources is a hook which is handling SIGNIN SIGNUP and storing the token of a User
+ */
 export default function useCachedResources() {
-  // const [isLoadingComplete, setLoadingComplete] = useState(true);
-  // const [userToken, setUserToken] = useState<null | string>(null);
-
   const initialAuthState: authType = {
     isLoadingComplete: true,
     handymanToken: null
@@ -42,13 +42,12 @@ export default function useCachedResources() {
         throw new Error();
     }
   }
-
   const [authState, dispatch] = useReducer(authReducer, initialAuthState)
 
+  //This method is using cached value and not allowing the function to build from scratch on every render
   const authContext = useMemo(
     () => ({
       signIn: async (handymanToken: string) => {
-        // setUserToken(handymanToken);
         try {
           await AsyncStorage.setItem('token', handymanToken);
         } catch (e) {
@@ -56,16 +55,14 @@ export default function useCachedResources() {
         }
         dispatch({ type: 'LOGIN', token: handymanToken })
       },
+
       signOut: async () => {
-        // setUserToken(null);
-        // setLoadingComplete(!isLoadingComplete);
         try {
           await AsyncStorage.removeItem('token');
         } catch (e) {
           console.log(e);
         }
         dispatch({ type: 'LOGOUT' })
-
       },
     }),
     [],
@@ -96,7 +93,6 @@ export default function useCachedResources() {
           console.warn(e);
         } finally {
           dispatch({ type: 'RETRIEVE_TOKEN', token: token })
-
           SplashScreen.hideAsync();
         }
       }

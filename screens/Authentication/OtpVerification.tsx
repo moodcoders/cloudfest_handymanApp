@@ -102,7 +102,6 @@ const styles = StyleSheet.create({
     fontSize: 30,
   },
   headerContainer: {
-    marginTop: '8%',
     flexDirection: 'row',
     paddingVertical: 20,
     backgroundColor: 'transparent',
