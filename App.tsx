@@ -6,6 +6,8 @@ import Navigation from './navigation';
 import RootStackScreen from './navigation/RootStackScreen';
 import useCachedResources from './hooks/useCachedResources';
 import useColorScheme from './hooks/useColorScheme';
+import BookingStatus from './screens/BookingStatus/BookingStatus';
+
 /**
  * App Component is the Parent Component where all component interact with each other
  *
@@ -40,4 +42,14 @@ export default function App() {
       )}
     </>
   );
+  // return (
+  //   <>
+  //     <StatusBar
+  //       barStyle='dark-content'
+  //       translucent={false}
+  //       backgroundColor='transparent'
+  //     />
+  //     <BookingStatus />
+  //   </>
+  // );
 }
