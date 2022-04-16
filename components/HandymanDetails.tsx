@@ -13,7 +13,7 @@ interface bookingParams {
     exp: string,
     rating: number,
     rate: number,
-    jobName: any,
+    jobName?: any,
 };
 
 const HandymanDetails = (prop: bookingParams) => {
