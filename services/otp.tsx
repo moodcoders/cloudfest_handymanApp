@@ -1,4 +1,4 @@
-const AUTH_API = 'http://192.168.1.11:4000';
+const AUTH_API = 'https://auth-service-ffptpmrzya-el.a.run.app';
 import { notifyMessage } from '../constants/NotifyMessage';
 
 /**generateOtpAPI is generating OTP for the handyman */
